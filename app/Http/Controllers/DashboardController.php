@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Bill;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -27,4 +29,31 @@ class DashboardController extends Controller
                 abort(403);
         }
     }
+
+public function cashier()
+{
+    $totalBills = Bill::count();
+
+    $totalRevenue = Bill::where('status', 'paid')
+        ->sum('net_amount');
+
+    $unpaidCount = Bill::where('status', 'unpaid')
+        ->count();
+
+    $todayRevenue = Bill::where('status', 'paid')
+        ->whereDate('created_at', Carbon::today())
+        ->sum('net_amount');
+
+    $recentBills = Bill::latest()
+        ->take(5)
+        ->get();
+
+    return view('dashboards.cashier', compact(
+        'totalBills',
+        'totalRevenue',
+        'unpaidCount',
+        'todayRevenue',
+        'recentBills'
+    ));
+}
 }

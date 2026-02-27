@@ -11,6 +11,12 @@
         </div>
     @endif
 
+    @if(session('error'))
+        <div class="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="bg-white shadow-lg rounded-2xl overflow-x-auto">
         <table class="min-w-full text-sm text-left">
 
@@ -20,7 +26,7 @@
                     <th class="px-4 py-3">Guest</th>
                     <th class="px-4 py-3">Type</th>
                     <th class="px-4 py-3">Category / Name</th>
-                    <th class="px-4 py-3">Room Number</th>
+                    <th class="px-4 py-3">Room No</th>
                     <th class="px-4 py-3">Check-in</th>
                     <th class="px-4 py-3">Check-out</th>
                     <th class="px-4 py-3">Guests</th>
@@ -44,60 +50,74 @@
 
                     <!-- TYPE -->
                     <td class="px-4 py-3 font-semibold">
-                        @if($booking->bookable_type === 'App\Models\RoomCategory')
-                            Room
-                        @elseif($booking->bookable_type === 'App\Models\Restaurant')
-                            Restaurant
-                        @elseif($booking->bookable_type === 'App\Models\EventHall')
-                            Event Hall
-                        @endif
+                        @switch($booking->bookable_type)
+                            @case('App\Models\RoomCategory')
+                                Room
+                                @break
+                            @case('App\Models\Restaurant')
+                                Restaurant
+                                @break
+                            @case('App\Models\EventHall')
+                                Event Hall
+                                @break
+                            @default
+                                -
+                        @endswitch
                     </td>
 
                     <!-- CATEGORY / NAME -->
                     <td class="px-4 py-3">
-                        @if($booking->bookable)
-                            {{ $booking->bookable->name ?? $booking->bookable->category_name ?? 'N/A' }}
-                        @else
-                            N/A
-                        @endif
+                        {{ $booking->bookable->name ?? '-' }}
                     </td>
 
-                    <!-- ROOM NUMBER (only if room assigned) -->
+                    <!-- ROOM NUMBER -->
                     <td class="px-4 py-3">
-                        @if($booking->room)
-                            {{ $booking->room->room_number }}
-                            @else
-                            -
-                        @endif
+                        {{ $booking->room->room_number ?? '-' }}
+                    </td>
+
+                    <!-- Dates (using cast from model) -->
+                    <td class="px-4 py-3">
+                        {{ $booking->check_in?->format('d M Y H:i') }}
                     </td>
 
                     <td class="px-4 py-3">
-                        {{ \Carbon\Carbon::parse($booking->check_in)->format('d M Y H:i') }}
-                    </td>
-
-                    <td class="px-4 py-3">
-                        {{ \Carbon\Carbon::parse($booking->check_out)->format('d M Y H:i') }}
+                        {{ $booking->check_out?->format('d M Y H:i') }}
                     </td>
 
                     <td class="px-4 py-3">
                         {{ $booking->guests }}
                     </td>
 
+                    <!-- TOTAL PRICE -->
                     <td class="px-4 py-3">
-                        Rs{{ number_format($booking->total_price, 2) }}
+                        @if($booking->bookable_type === 'App\Models\RoomCategory'
+                            && $booking->bookable
+                            && $booking->bookable->plans->first())
+
+                            @php
+                                $price = $booking->bookable->plans->first()->price_per_night;
+                                $nights = $booking->check_in->diffInDays($booking->check_out);
+                                $total = $price * max($nights, 1);
+                            @endphp
+
+                            Rs {{ number_format($total, 2) }}
+
+                        @else
+                            Rs {{ number_format($booking->total_price ?? 0, 2) }}
+                        @endif
                     </td>
 
                     <!-- STATUS -->
                     <td class="px-4 py-3">
-                        @if($booking->booking_status == 'approved')
+                        @if($booking->booking_status === 'approved')
                             <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700">
                                 Approved
                             </span>
-                        @elseif($booking->booking_status == 'pending')
+                        @elseif($booking->booking_status === 'pending')
                             <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">
                                 Pending
                             </span>
-                        @elseif($booking->booking_status == 'rejected')
+                        @elseif($booking->booking_status === 'rejected')
                             <span class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-700">
                                 Rejected
                             </span>
@@ -108,9 +128,6 @@
                     <td class="px-4 py-3">
                         @if($booking->approvedBy)
                             {{ $booking->approvedBy->name }}
-                            <span class="text-xs text-gray-400">
-                                ({{ $booking->approvedBy->role->name ?? '' }})
-                            </span>
                         @else
                             -
                         @endif
@@ -118,7 +135,7 @@
 
                     <!-- ACTIONS -->
                     <td class="px-4 py-3 text-center">
-                        @if($booking->booking_status == 'pending')
+                        @if($booking->booking_status === 'pending')
                             <div class="flex justify-center gap-2">
                                 <form action="{{ route('admin.bookings.approve', $booking->id) }}" method="POST">
                                     @csrf

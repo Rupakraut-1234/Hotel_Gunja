@@ -89,4 +89,8 @@ class Booking extends Model
     {
         return $this->booking_status === 'rejected';
     }
+    public function bill()
+{
+    return $this->hasOne(Bill::class);
+}
 }

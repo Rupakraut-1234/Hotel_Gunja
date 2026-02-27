@@ -5,23 +5,29 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\RoomCategory;
 
 class AdminBookingController extends Controller
 {
-    // List all bookings
-    public function index()
-    {
-        $bookings = Booking::with([
-            'guest',
-            'bookable',
-            'room',
-            'approvedBy'
-        ])
-        ->latest()
-        ->get();
+    // List all bookingsuse App\Models\RoomCategory;
 
-        return view('admin.bookings.index', compact('bookings'));
-    }
+public function index()
+{
+    $bookings = Booking::with([
+        'guest',
+        'room',
+        'approvedBy',
+        'bookable' => function ($morphTo) {
+            $morphTo->morphWith([
+                RoomCategory::class => ['plans'], // Only RoomCategory has plans
+            ]);
+        }
+    ])
+    ->latest()
+    ->get();
+
+    return view('admin.bookings.index', compact('bookings'));
+}
 
     // Approve booking
     public function approve($id)
