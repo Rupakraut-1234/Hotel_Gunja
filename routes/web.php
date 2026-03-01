@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EventHallController;
+use App\Http\Controllers\AdminGalleryController;
 use App\Http\Controllers\Admin\BillingController;
 
 // Home page
@@ -94,6 +95,13 @@ Route::get('/360-tour', function () {
     return view('pages.360tour');
 });
 
+// Admin: list all bookings
+Route::get('/admin/bookings', [AdminBookingController::class, 'index'])
+    ->name('admin.bookings.index');
+
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'index'])
+    ->name('admin.reviews.index');
 
 
 // Restaurants
@@ -122,6 +130,44 @@ Route::prefix('event-halls')->group(function () {
 });
 use App\Http\Controllers\StaffLoginController;
 
+
+
+//Gallery Routes
+
+
+// Public Gallery Page (Navbar Gallery)
+Route::get('/gallery', [AdminGalleryController::class, 'galleryPage'])
+    ->name('gallery.page');
+
+// Admin Gallery Panel
+Route::prefix('admin')->group(function () {
+
+    // View all images Gallery list
+    Route::get('/gallery', [AdminGalleryController::class, 'index'])
+        ->name('admin.gallery.index');
+
+    // Create page (UPLOAD FORM)
+    Route::get('/gallery/create', [AdminGalleryController::class, 'create'])
+        ->name('admin.gallery.create');
+
+    // Upload image
+    //Store Image
+    Route::post('/gallery/store', [AdminGalleryController::class, 'store'])
+        ->name('admin.gallery.store');
+
+
+    // Approve image
+    Route::post('/gallery/approve/{id}', [AdminGalleryController::class, 'approve'])
+        ->name('admin.gallery.approve');
+
+    // Show on homepage toggle
+    Route::post('/gallery/homepage/{id}', [AdminGalleryController::class, 'Homepage'])
+        ->name('admin.gallery.homepage');
+
+    // Delete image
+    Route::delete('/gallery/{id}', [AdminGalleryController::class, 'destroy'])
+        ->name('admin.gallery.destroy');
+});
 Route::prefix('staff')->group(function () {
     Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('auth.staff-login');
     Route::post('/login', [StaffLoginController::class, 'login'])->name('auth.staff-login.submit');
