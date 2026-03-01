@@ -90,21 +90,9 @@
 
                     <!-- TOTAL PRICE -->
                     <td class="px-4 py-3">
-                        @if($booking->bookable_type === 'App\Models\RoomCategory'
-                            && $booking->bookable
-                            && $booking->bookable->plans->first())
-
-                            @php
-                                $price = $booking->bookable->plans->first()->price_per_night;
-                                $nights = $booking->check_in->diffInDays($booking->check_out);
-                                $total = $price * max($nights, 1);
-                            @endphp
-
-                            Rs {{ number_format($total, 2) }}
-
-                        @else
-                            Rs {{ number_format($booking->total_price ?? 0, 2) }}
-                        @endif
+                       <td class="px-4 py-3">
+    Rs {{ number_format($booking->total_price ?? 0, 2) }}
+</td>
                     </td>
 
                     <!-- STATUS -->
@@ -164,7 +152,6 @@
                     </td>
                 </tr>
             @endforelse
-
             </tbody>
         </table>
     </div>

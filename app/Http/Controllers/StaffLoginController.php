@@ -25,11 +25,9 @@ class StaffLoginController extends Controller
             // Redirect based on role
             switch ($user->role->name) {
                 case 'Admin':
-                    return redirect()->route('dashboard'); // or /admin/dashboard
-                case 'Receptionist':
-                    return redirect()->route('dashboard');
-                case 'Cashier':
-                    return redirect()->route('dashboard');
+case 'Receptionist':
+case 'Cashier':
+    return redirect()->route('dashboard');
                 default:
                     Auth::logout();
                     return back()->withErrors(['email' => 'Unauthorized']);

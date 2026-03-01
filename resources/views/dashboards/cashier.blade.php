@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-10">
@@ -63,18 +63,29 @@
                             <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-700">Unpaid</span>
                         @endif
                     </td>
-                    <td class="px-4 py-3 text-center">
-                        @if($bill->status == 'unpaid')
-                            <form action="{{ route('bills.markPaid', $bill->id) }}" method="POST">
-                                @csrf
-                                <button class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 text-xs">
-                                    Mark as Paid
-                                </button>
-                            </form>
-                        @else
-                            <span class="text-gray-400 text-xs">-</span>
-                        @endif
-                    </td>
+                  <td class="px-4 py-3 text-center space-y-2">
+
+    <!-- Download Invoice Button -->
+    <a href="{{ route('invoice.download', $bill->booking_id) }}"
+       class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 text-xs inline-block">
+        Download Invoice
+    </a>
+
+    @if($bill->status == 'unpaid')
+        <form action="{{ route('billing.mark-paid', $bill->id) }}" 
+              method="POST">
+            @csrf
+            <button class="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700 text-xs mt-1">
+                Mark as Paid
+            </button>
+        </form>
+    @else
+        <span class="block text-green-600 text-xs mt-1 font-semibold">
+            Payment Completed
+        </span>
+    @endif
+
+</td>
                 </tr>
                 @empty
                 <tr>
@@ -85,4 +96,13 @@
         </table>
     </div>
 </div>
+
+<form action="{{ route('auth.staff-logout') }}" method="POST">
+            @csrf
+            <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                Logout
+            </button>
+        </form>
+    </div>
+
 @endsection

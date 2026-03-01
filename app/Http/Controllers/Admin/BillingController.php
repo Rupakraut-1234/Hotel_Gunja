@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bill;
 use App\Models\Booking;
    use Carbon\Carbon;
 use App\Models\RoomCategory;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BillingController extends Controller
 {
@@ -45,6 +47,34 @@ public function generateBill($bookingId)
     ]);
 
     return redirect()->back()->with('success', 'Bill generated successfully.');
+}
+
+public function downloadInvoice($bookingId)
+{
+   $booking = Booking::with('bookable', 'guest')
+    ->findOrFail($bookingId);
+    if ($booking->bookable instanceof RoomCategory) {
+    $plan = $booking->bookable->plans()->first();
+}
+    $bill = Bill::where('booking_id', $bookingId)->firstOrFail();
+
+    $pdf = Pdf::loadView('admin.invoices.invoice', compact('booking', 'bill'));
+
+    return $pdf->download('invoice_'.$booking->id.'.pdf');
+}
+
+public function markAsPaid($billId)
+{
+    $bill = Bill::findOrFail($billId);
+
+    if ($bill->status === 'paid') {
+        return redirect()->back()->with('info', 'Bill is already paid.');
+    }
+
+    $bill->status = 'paid';
+    $bill->save();
+
+    return redirect()->back()->with('success', 'Bill marked as paid successfully.');
 }
 }
 

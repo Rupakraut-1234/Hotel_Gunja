@@ -3,28 +3,30 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bill;
+use Illuminate\Support\Facades\Auth;
 
 class Booking extends Model
 {
     protected $fillable = [
-        'guest_id',
-        'guest_name',
-        'contact_number',
-        'id_image',
+    'guest_id',
 
-        'bookable_type',
-        'bookable_id',
+    'bookable_type',
+    'bookable_id',
 
-        'check_in',
-        'check_out',
-        'guests',
+    'room_category_id',
+    'room_plan_id',
 
-        'booking_status',
-        'approved_by',
+    'check_in',
+    'check_out',
+    'guests',
 
-        'total_price',
-        'room_id'
-    ];
+    'booking_status',
+    'approved_by',
+
+    'total_price',
+    'room_id'
+];
 
     /*
     |--------------------------------------------------------------------------
@@ -92,5 +94,55 @@ class Booking extends Model
     public function bill()
 {
     return $this->hasOne(Bill::class);
+}
+
+protected static function booted()
+{
+    static::updated(function ($booking) {
+
+        if (
+            $booking->isDirty('booking_status') &&
+            $booking->booking_status === 'approved' &&
+            !$booking->bill
+        ) {
+
+            $bookable = $booking->bookable;
+            $total = 0;
+
+            if ($bookable instanceof \App\Models\RoomCategory) {
+
+                $price  = $booking->plan->price_per_night ?? 0;
+                $nights = $booking->check_in->diffInDays($booking->check_out);
+                $total  = $price * max($nights, 1);
+
+            } elseif ($bookable instanceof \App\Models\EventHall) {
+
+                $total = $bookable->price_per_hour;
+
+            } elseif ($bookable instanceof \App\Models\Restaurant) {
+
+                $total = 0;
+
+            }
+
+            $tax = $total * 0.10;
+            $discount = 0;
+            $net = $total + $tax - $discount;
+
+            Bill::create([
+                'booking_id'   => $booking->id,
+                'total_amount' => $total,
+                'tax'          => $tax,
+                'discount'     => $discount,
+                'net_amount'   => $net,
+                'status'       => 'unpaid',
+                'generated_by' => $booking->approved_by,
+            ]);
+        }
+    });
+}
+public function plan()
+{
+    return $this->belongsTo(\App\Models\RoomPlan::class, 'room_plan_id');
 }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EventHallController;
+use App\Http\Controllers\Admin\BillingController;
 
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -56,8 +57,6 @@ Route::middleware(['auth', 'role:Admin'])
         Route::get('/reviews', [ReviewController::class, 'index'])
             ->name('reviews.index');
 
-        Route::get('/reviews/create', [ReviewController::class, 'create'])
-            ->name('reviews.create');
 
         Route::post('/reviews', [ReviewController::class, 'store'])
             ->name('reviews.store');
@@ -158,3 +157,31 @@ Route::middleware(['auth', 'role:Receptionist'])
 Route::middleware(['auth', 'role:Cashier'])
     ->get('/dashboard/cashier', [DashboardController::class, 'cashier'])
     ->name('dashboard.cashier');
+
+    /*
+| Billing Routes
+*/
+Route::middleware(['auth', 'role:Cashier'])
+    ->prefix('billing')
+    ->name('billing.')
+    ->group(function () {
+        Route::post('/generate/{bookingId}', [BillingController::class, 'generateBill'])
+            ->name('generate');
+            Route::post('/pay/{billId}', [BillingController::class, 'payBill'])
+            ->name('pay');
+            Route::post('/refund/{billId}', [BillingController::class, 'refundBill'])
+            ->name('refund');
+            Route::post('/cancel/{billId}', [BillingController::class, 'cancelBill'])
+            ->name('cancel');
+            Route::post('/mark-paid/{billId}', [BillingController::class, 'markAsPaid'])
+            ->name('mark-paid');
+            Route::post('/mark-unpaid/{billId}', [BillingController::class, 'markAsUnpaid'])
+            ->name('mark-unpaid');
+            
+    });
+    Route::get('/admin/invoice/{bookingId}', 
+    [App\Http\Controllers\Admin\BillingController::class, 'downloadInvoice']
+)->name('invoice.download');
+
+Route::get('/reviews/create', [ReviewController::class, 'create'])
+            ->name('reviews.create');

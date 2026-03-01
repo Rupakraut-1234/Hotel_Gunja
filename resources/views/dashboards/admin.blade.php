@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-6 py-12">
@@ -59,43 +59,6 @@
                 Go to Reviews
             </a>
         </div>
-
-        <!-- Rooms -->
-        <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition">
-            <h3 class="text-xl font-semibold mb-2">Manage Rooms</h3>
-            <p class="text-gray-500 mb-4 text-sm">
-                View and update room listings
-            </p>
-            <a href="{{ route('rooms.index') }}"
-               class="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                Manage Rooms
-            </a>
-        </div>
-
-        <!-- Restaurants -->
-        <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition">
-            <h3 class="text-xl font-semibold mb-2">Manage Restaurants</h3>
-            <p class="text-gray-500 mb-4 text-sm">
-                Control restaurant reservations
-            </p>
-            <a href="{{ route('restaurant.index') }}"
-               class="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                Manage Restaurants
-            </a>
-        </div>
-
-        <!-- Event Halls -->
-        <div class="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition">
-            <h3 class="text-xl font-semibold mb-2">Manage Event Halls</h3>
-            <p class="text-gray-500 mb-4 text-sm">
-                Manage event hall bookings
-            </p>
-            <a href="{{ route('event-halls.index') }}"
-               class="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                Manage Halls
-            </a>
-        </div>
-
     </div>
 </div>
 @endsection
