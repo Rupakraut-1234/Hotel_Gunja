@@ -30,6 +30,7 @@
                     <th class="px-4 py-3">Check-in</th>
                     <th class="px-4 py-3">Check-out</th>
                     <th class="px-4 py-3">Guests</th>
+                    <th class="px-4 py-3">Food Orders</th>
                     <th class="px-4 py-3">Total Price</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Approved By</th>
@@ -88,6 +89,31 @@
                         {{ $booking->guests }}
                     </td>
 
+<td class="px-4 py-3">
+
+@if($booking->menuItems->count())
+
+<ul class="text-xs text-gray-700 space-y-1">
+
+@foreach($booking->menuItems as $item)
+
+<li>
+{{ $item->name }}
+(x{{ $item->pivot->quantity }})
+</li>
+
+@endforeach
+
+</ul>
+
+@else
+
+<span class="text-gray-400 text-xs">No Food</span>
+
+@endif
+
+</td>
+
                     <!-- TOTAL PRICE -->
                     <td class="px-4 py-3">
                        <td class="px-4 py-3">
@@ -145,6 +171,39 @@
                     </td>
 
                 </tr>
+                <td class="px-4 py-3 text-center">
+                @if($booking->booking_status === 'approved')
+
+<a href="{{ route('admin.orders.create',$booking->id) }}"
+class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700 text-xs">
+Add Food
+</a>
+
+@endif
+
+@if($booking->booking_status === 'pending')
+
+<div class="flex justify-center gap-2">
+
+<form action="{{ route('admin.bookings.approve', $booking->id) }}" method="POST">
+@csrf
+<button class="bg-green-600 text-white px-3 py-1 rounded-lg text-xs">
+Approve
+</button>
+</form>
+
+<form action="{{ route('admin.bookings.reject', $booking->id) }}" method="POST">
+@csrf
+<button class="bg-red-600 text-white px-3 py-1 rounded-lg text-xs">
+Reject
+</button>
+</form>
+
+</div>
+
+@endif
+
+</td>
             @empty
                 <tr>
                     <td colspan="12" class="text-center py-6 text-gray-500">

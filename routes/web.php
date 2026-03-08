@@ -11,6 +11,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EventHallController;
 use App\Http\Controllers\AdminGalleryController;
 use App\Http\Controllers\Admin\BillingController;
+use App\Http\Controllers\Admin\RestaurantOrderController;
 
 // Home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,6 +29,14 @@ Route::middleware(['auth', 'role:Admin,Receptionist'])
             ->name('bookings.approve');
         Route::post('/bookings/{booking}/reject', [AdminBookingController::class, 'reject'])
             ->name('bookings.reject');
+
+            Route::get('/bookings/{booking}/order-food',
+    [RestaurantOrderController::class,'create'])
+    ->name('orders.create');
+
+Route::post('/bookings/{booking}/order-food',
+    [RestaurantOrderController::class,'store'])
+    ->name('orders.store');
 });
 Route::middleware(['auth', 'role:Admin'])
     ->prefix('admin')
@@ -231,3 +240,13 @@ Route::middleware(['auth', 'role:Cashier'])
 
 Route::get('/reviews/create', [ReviewController::class, 'create'])
             ->name('reviews.create');
+
+use App\Http\Controllers\Admin\AdminRoomController;
+
+Route::prefix('admin')
+    ->middleware(['auth', 'role:Admin'])
+    ->name('admin.')
+    ->group(function () {
+
+        Route::resource('rooms', AdminRoomController::class);
+});

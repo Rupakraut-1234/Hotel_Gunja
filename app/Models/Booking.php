@@ -145,4 +145,13 @@ public function plan()
 {
     return $this->belongsTo(\App\Models\RoomPlan::class, 'room_plan_id');
 }
+
+public function menuItems()
+{
+    return $this->belongsToMany(MenuItem::class, 'booking_menu_items')
+                ->withPivot('quantity', 'price_at_time', 'order_status')
+                ->withTimestamps();
+}
+
+
 }
