@@ -238,6 +238,10 @@ Route::middleware(['auth', 'role:Cashier'])
     [App\Http\Controllers\Admin\BillingController::class, 'downloadInvoice']
 )->name('invoice.download');
 
+Route::get('/admin/invoice/{bookingId}/view', 
+    [App\Http\Controllers\Admin\BillingController::class, 'viewInvoice']
+)->name('invoice.view');
+
 Route::get('/reviews/create', [ReviewController::class, 'create'])
             ->name('reviews.create');
 

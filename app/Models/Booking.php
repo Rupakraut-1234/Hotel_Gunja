@@ -153,5 +153,20 @@ public function menuItems()
                 ->withTimestamps();
 }
 
+public function getFoodTotalAttribute()
+{
+    return $this->menuItems->sum(function ($item) {
+        return $item->pivot->price_at_time * $item->pivot->quantity;
+    });
+}
+
+public function getFinalTotalAttribute()
+{
+    $roomPrice = $this->total_price ?? 0;
+
+    $foodPrice = $this->food_total;
+
+    return $roomPrice + $foodPrice;
+}
 
 }
