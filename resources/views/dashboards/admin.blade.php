@@ -77,7 +77,7 @@
     <p class="text-gray-500 mb-4 text-sm">
         Add, edit or remove restaurant tables
     </p>
-    <a href="/"
+    <a href="{{ route('admin.restaurant-tables.index') }}"
        class="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
         Manage Restaurant Tables
     </a>
@@ -89,7 +89,7 @@
     <p class="text-gray-500 mb-4 text-sm">
         Add, edit or remove food items
     </p>
-    <a href="/"
+    <a href="{{ route('admin.menu-items.index') }}"
        class="block text-center bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
         Manage Menus
     </a>
