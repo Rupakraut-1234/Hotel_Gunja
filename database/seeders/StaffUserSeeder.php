@@ -13,20 +13,20 @@ class StaffUserSeeder extends Seeder
         User::insert([
             [
                 'name' => 'Admin User',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('password123'),
+                'email' => 'admin@gunja.com',
+                'password' => Hash::make('gunja@admin123'),
                 'role_id' => 1, // Admin
             ],
             [
                 'name' => 'Receptionist User',
-                'email' => 'reception@example.com',
-                'password' => Hash::make('password123'),
+                'email' => 'reception@gunja.com',
+                'password' => Hash::make('gunja@reception123'),
                 'role_id' => 2, // Receptionist
             ],
             [
                 'name' => 'Cashier User',
-                'email' => 'cashier@example.com',
-                'password' => Hash::make('password123'),
+                'email' => 'cashier@gunja.com',
+                'password' => Hash::make('gunja@cashier123'),
                 'role_id' => 3, // Cashier
             ],
         ]);

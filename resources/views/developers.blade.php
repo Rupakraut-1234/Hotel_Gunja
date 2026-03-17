@@ -70,7 +70,7 @@ technical direction of the project.
 </a>
 
 <!-- Instagram -->
-<a href="#" target="_blank" class="dev-icon" aria-label="Instagram">
+<a href="https://www.instagram.com/nprnak/?utm_source=ig_web_button_share_sheet" target="_blank" class="dev-icon" aria-label="Instagram">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9zm4.7-7.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/>
 </svg>
@@ -84,8 +84,7 @@ technical direction of the project.
 <!-- CARD 2 -->
 <div class="dev-card">
 
-<img src="https://i.pravatar.cc/300?img=15"
-class="dev-img">
+<img src="{{ asset('images/basant.jpg') }}" class="dev-img">
 
 <h3 class="dev-name">
 Mr. Basant Karki
@@ -121,14 +120,14 @@ throughout the system development.
 </a>
 
 <!-- Facebook -->
-<a href="#" target="_blank" class="dev-icon" aria-label="Facebook">
+<a href="https://www.facebook.com/basantbrdbas" target="_blank" class="dev-icon" aria-label="Facebook">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.02 3.66 9.19 8.44 9.93v-7.02H8.08v-2.9h2.29V9.41c0-2.27 1.35-3.52 3.42-3.52.99 0 2.03.18 2.03.18v2.23h-1.14c-1.12 0-1.47.69-1.47 1.4v1.68h2.5l-.4 2.9h-2.1v7.02C18.34 21.26 22 17.09 22 12.07z"/>
 </svg>
 </a>
 
 <!-- Instagram -->
-<a href="#" target="_blank" class="dev-icon" aria-label="Instagram">
+<a href="https://www.instagram.com/_instagrapher__/?utm_source=ig_web_button_share_sheet" target="_blank" class="dev-icon" aria-label="Instagram">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9zm4.7-7.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/>
 </svg>
@@ -142,10 +141,8 @@ throughout the system development.
 <!-- Developer Card 3 -->
 <div class="dev-card">
 
-<!-- <img src="https://media.licdn.com/dms/image/v2/D5603AQFEyVEXOGW8Vw/profile-displayphoto-scale_200_200/B56ZznMlykI0AY-/0/1773405368215?e=1775088000&v=beta&t=E8h6w2lVvPAJezfp9SiXCjOZCWdFd59Xj7WycIDdNU0"
-class="dev-img"> -->
-<img src="https://i.pravatar.cc/300?img=15"
-class="dev-img">
+ <img src="{{ asset('images/rupak.jpg') }}" class="dev-img">
+
 <h3 class="dev-name">
 Rupak Raut
 </h3>
@@ -193,10 +190,7 @@ Focused on frontend UI with Blade templates and backend integration using larave
 <!-- CARD 4 -->
 <div class="dev-card">
 
-<!-- <img src="https://media.licdn.com/dms/image/v2/D4D03AQEGAh1gHlE5Kw/profile-displayphoto-crop_800_800/B4DZgCDQpiHMAI-/0/1752381068415?e=1775088000&v=beta&t=-XWZQYKOuq94RkIgAH_Itu-cPqFCmJa6UFZDyHo1W2k"
-class="dev-img"> -->
-<img src="https://i.pravatar.cc/300?img=15"
-class="dev-img">
+<img src="{{ asset('images/mohit.jpeg') }}" class="dev-img"> 
 <h3 class="dev-name">
 Mohit Guragain
 </h3>
@@ -229,21 +223,21 @@ database systems while supprting fronted development.
 </a>
 
 <!-- Email -->
-<a href="mailto:example@email.com" class="dev-icon" aria-label="Email">
+<a href="mailto:guragainmohit@gmail.com" class="dev-icon" aria-label="Email">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M22 6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6zm-2 0-8 5-8-5"/>
 </svg>
 </a>
 
 <!-- Facebook -->
-<a href="#" target="_blank" class="dev-icon" aria-label="Facebook">
+<a href="https://www.facebook.com/mohit.lol/" target="_blank" class="dev-icon" aria-label="Facebook">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.02 3.66 9.19 8.44 9.93v-7.02H8.08v-2.9h2.29V9.41c0-2.27 1.35-3.52 3.42-3.52.99 0 2.03.18 2.03.18v2.23h-1.14c-1.12 0-1.47.69-1.47 1.4v1.68h2.5l-.4 2.9h-2.1v7.02C18.34 21.26 22 17.09 22 12.07z"/>
 </svg>
 </a>
 
 <!-- Instagram -->
-<a href="#" target="_blank" class="dev-icon" aria-label="Instagram">
+<a href="https://www.instagram.com/mohit._lol?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dev-icon" aria-label="Instagram">
 <svg viewBox="0 0 24 24" fill="currentColor">
 <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5zm0 7.4A2.9 2.9 0 1 1 14.9 12 2.9 2.9 0 0 1 12 14.9zm4.7-7.9a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1z"/>
 </svg>
