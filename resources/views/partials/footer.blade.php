@@ -12,10 +12,11 @@
             <!-- Brand -->
             <div class="space-y-6">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-gradient-to-br from-[#800020] to-[#D4AF37] p-3 rounded-xl">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <rect x="4" y="2" width="16" height="20" rx="2"/>
-                        </svg>
+                    <div class="bg-gradient-to-br from-[#800020] to-[#600018] p-3 rounded-xl shadow-lg">
+                                    <img src="{{ asset('Images/logo.jpg') }}"
+                 alt="Logo"
+                 class="w-12 h-12 object-cover rounded-lg">
+
                     </div>
                     <div>
                         <span class="text-xl font-bold text-white" style="font-family:'Playfair Display', serif;">Hotel Gunja</span>
@@ -113,7 +114,7 @@ of the city.
                         </a>
                     </li>
                     <li>
-                        <a href="/rooms/1/book" class="footer-elegant-link">
+                        <a href="/rooms" class="footer-elegant-link">
                             <span class="hover-line"></span>
                             Book Now
                         </a>
@@ -131,13 +132,13 @@ of the city.
                         </a>
                     </li>
                     <li>
-                        <a href="#Resturants & Dining" class="footer-elegant-link">
+                        <a href="{{ route('restaurant.index') }}" class="footer-elegant-link">
                             <span class="hover-line"></span>
                             Resturants & Dining
                         </a>
                     </li>
                     <li>
-                        <a href="#Events Booking" class="footer-elegant-link">
+                        <a href="{{ route('event-halls.index') }}" class="footer-elegant-link">
                             <span class="hover-line"></span>
                             Events Bookings
                         </a>

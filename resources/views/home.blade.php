@@ -370,16 +370,18 @@ $rooms = [
             @php
                 $amenities = [
                     ['Swimming Pool','Outdoor heated pool','waves'],
-                    ['Spa & Wellness','Full-service spa','sparkles'],
-                    ['Fitness Center','24/7 gym access','dumbbell'],
+                    // ['Spa & Wellness','Full-service spa','sparkles'],
+                    // ['Fitness Center','24/7 gym access','dumbbell'],
+                    ['24/7 Power Backup','Electricity power backup','bolt'],
+                    ['Air-Conditioned Rooms','Comfortable indoor climate','snowflake'],
                     ['Restaurant','Fine dining','utensils-crossed'],
                     ['Free WiFi','High-speed internet','wifi'],
                     ['Room Service','24-hour service','concierge-bell'],
                     ['Parking','Free valet parking','car'],
                     ['Conference Hall','Event spaces','users'],
-                    ['Airport Transfer','Complimentary shuttle','plane'],
+                    ['Airport Transfer','Paid Service','plane'],
                     ['Bar & Lounge','Premium beverages','wine'],
-                    ['Laundry Service','Same-day service','shirt'],
+                    ['Laundry Service','Convenient Washing service','shirt'],
                     ['Concierge','24/7 assistance','info'],
                     
                 ];

@@ -39,10 +39,7 @@
                             relative overflow-hidden transition-transform duration-500
                 group-hover:scale-110">
 
-                    <!-- Hover overlay glow  -->
-                    {{-- <div class="absolute inset-0 bg-gradient-to-br from-[#D4AF37] to-transparent
-                                opacity-0 group-hover:opacity-30 transition-opacity duration-500 z-10"></div> --}}
-
+                
                     <!-- Logo Image (Scaled Up) -->
                     <img src="{{ asset('Images/logo.jpg') }}"
                         alt="Logo"
@@ -106,7 +103,7 @@
 
                 {{-- Book Now  --}}
                 @if(!empty($featuredRoom))
-                    <a href="{{ route('rooms.book', $featuredRoom->id) }}"
+                    <a href="{{ route('rooms.index')}}"
                     class="{{ $navItem }} navbar-link group relative">
                     Book Now
                     </a>
