@@ -10,7 +10,7 @@
 # 🏨 Hotel Gunja – Hotel Booking & Management System
 
 ## 📌 About the Project
-Hotel Gunja is a full-stack web-based plus responsive hotel management system developed using Laravel. It automates hotel operations such as room booking, billing, restaurant services, event management, and customer handling.
+Hotel Gunja is a full-stack, responsive web-based plus  hotel management system developed using Laravel. It automates hotel operations such as room booking, billing, restaurant services, event management, and customer handling.
 
 ---
 
@@ -71,9 +71,9 @@ To digitalize hotel operations and provide a centralized system for efficient ma
 ---
 
 
-## 📦 Installation 
+## 📦 Installation Guide
 ```bash
-git clone <repo-url>
+git clone [<repo-url>](https://github.com/Rupakraut-1234/Hotel_Gunja.git)
 cd Hotel_Gunja
 composer install
 npm install
@@ -82,3 +82,9 @@ php artisan key:generate
 php artisan migrate
 php artisan serve
 
+
+---
+
+🚀 Status
+Completed ✔
+---
