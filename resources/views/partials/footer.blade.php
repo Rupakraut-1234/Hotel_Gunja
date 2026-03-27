@@ -14,7 +14,11 @@
             <div class="space-y-6">
                 <div class="flex items-center space-x-3">
                     <div class="bg-gradient-to-br from-[#800020] to-[#600018] p-3 rounded-xl shadow-lg">
+<<<<<<< HEAD
                                     <img src="{{ asset('images/logo.jpg') }}"
+=======
+                                    <img src="{{ asset('Images/logo.jpg') }}"
+>>>>>>> 22f18a3ab0bd7e46e33d31985e19fcae8d34fc70
                  alt="Logo"
                  class="w-12 h-12 object-cover rounded-lg">
 

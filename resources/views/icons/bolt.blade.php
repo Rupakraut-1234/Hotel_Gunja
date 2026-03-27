@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+class="lucide lucide-bolt h-10 w-10 text-[#800020]"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+  <path d="M13 2 L3 14 H12 L11 22 L21 10 H13 Z"></path>
+</svg>

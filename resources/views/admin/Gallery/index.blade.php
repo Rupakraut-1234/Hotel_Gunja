@@ -155,14 +155,6 @@ data-category="{{ $image->category }}">
 onclick="openPreview(this)"
 class="w-full h-28 object-cover cursor-pointer group-hover:scale-110 transition duration-300">
 
-{{-- OVERLAY --}}
-<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition flex items-center justify-center">
-
-<span class="text-white opacity-0 group-hover:opacity-100 text-sm">
-View
-</span>
-
-</div>
 
 {{-- INFO --}}
 <div class="p-3 text-xs">

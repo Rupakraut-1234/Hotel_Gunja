@@ -27,7 +27,7 @@ The team behind the Hotel Gunja digital experience
 <!-- CARD 1 -->
 <div class="dev-card">
 
-<img src="https://i.pravatar.cc/300?img=15"
+<img src="{{ asset('images/pranayasir.jpg') }}"
 class="dev-img">
 
 <h3 class="dev-name">
